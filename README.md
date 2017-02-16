@@ -4,8 +4,8 @@
 
 - Describe the role of a web framework such as Rails
 - Describe the components of an MVC application
-- Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Ruby on Rails implements MVC
+- Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - List the most common folders in a Rails application and describe their purpose
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Describe how to read, understand, and fix errors in a Rails application
@@ -35,7 +35,10 @@ View, Controller**.
 
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
-We've already used the MVC design paradigm to organize our Sinatra apps. ActiveRecord has already shown you a library that helps you build *models*. We've already used Embedded Ruby (erb) to construct *views*.
+Now MVC is not specific to Rails. In fact, we've seen it before via Sinatra:
+- Sinatra has provided us a way to create *controllers* to handle http requests. 
+- ActiveRecord has shown us a library to allow us to build *models*. 
+- We've already used Embedded Ruby (erb) to construct *views*.
 
 MVC can be used in lots of types of applications. There are MVC-style
 frameworks for building native desktop apps (e.g., Microsoft's ASP.net, Cocoa
@@ -57,8 +60,7 @@ Rails.
 MVC is all about separating your code into separate sections...
 
 * **Models**: represent the data in our application
-* **Views**: describe how to present your data in a way that the user can
-see in the browser
+* **Views**: describe how to present your data in a way that the user can see in the browser
 * **Controllers**: are responsible for responding to user requests, interacting with models and loading views
 
 ## Rails and MVC (10 minutes / 0:20)
