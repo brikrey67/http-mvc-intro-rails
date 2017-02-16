@@ -4,11 +4,11 @@
 
 - Describe the role of a web framework such as Rails
 - Describe the components of an MVC application
-- Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Ruby on Rails implements MVC
+- Diagram & annotate the lifecycle of an HTTP request in Ruby on Rails
 - List the most common folders in a Rails application and describe their purpose
 - Explain how Convention over Configuration relates to Ruby on Rails
-- Describe how to read understand and fix errors in a Rails application
+- Describe how to read, understand, and fix errors in a Rails application
 
 ## Framing (10 minutes / 0:10)
 
@@ -35,8 +35,10 @@ View, Controller**.
 
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
-You've seen Sinatra so you've already seen a pattern that is very close to MVC,
-but not quite. ActiveRecord has already shown you a library that helps you build *models*.
+Now MVC is not specific to Rails. In fact, we've seen it before via Sinatra:
+- Sinatra has provided us a way to create *controllers* to handle http requests. 
+- ActiveRecord has shown us a library to allow us to build *models*. 
+- We've already used Embedded Ruby (erb) to construct *views*.
 
 MVC can be used in lots of types of applications. There are MVC-style
 frameworks for building native desktop apps (e.g., Microsoft's ASP.net, Cocoa
@@ -49,7 +51,7 @@ related but different patterns in Javascript frameworks like Angular or Backbone
 > Some others include [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (Model-View-ViewModel) and [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (Model-View-Presenter).
 
 This lesson will not include writing much - if any - code at all. We are going to
-take a high-level theoretical approach. It's extremely important to understand
+take a high-level conceptual approach. It's extremely important to understand
 the underlying concepts before jumping into such a heavy duty framework such as
 Rails.
 
@@ -57,10 +59,9 @@ Rails.
 
 MVC is all about separating your code into separate sections...
 
-* **Models**: they represent the data in our application 
-* **Views**: they describe how to present your data in a way that the user can
-see in the browser
-* **Controllers**: they are responsible for responding to user requests, interacting with models and loading views
+* **Models**: represent the data in our application
+* **Views**: describe how to present your data in a way that the user can see in the browser
+* **Controllers**: are responsible for responding to user requests, interacting with models and loading views
 
 ## Rails and MVC (10 minutes / 0:20)
 
@@ -73,13 +74,13 @@ views and controllers.
 As a result, the request-response cycle looks like this for Rails...
 
   1. A user of our web application submits a request to our application's server.
-  It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter
-  or maybe a user submitting a form on our application.
+  It can come in a myriad of ways. It could be someone typing in a URL and hitting
+  enter, clicking a link, or submitting a form on our application.
 
   2. The request hits the router of the application.
 
   3. The application then either doesn't recognize the route (error) or it does
-  recognize it (route) and sends it to a controller.
+  recognize it (route) and sends it to the appropriate controller.
 
   4. Once the controller gets the request, it performs any necessary actions. This
   might include fetching, updating, deleting, or creating information using one
@@ -90,7 +91,7 @@ As a result, the request-response cycle looks like this for Rails...
 
   6. The rendered view is then sent back to the client as a response.
 
-## We Do: In-Person MVC (20 minutes / 0:40)
+## [We Do: In-Person MVC (20 minutes / 0:40)](exercise.md)
 
 ## Rails Apps
 
@@ -202,14 +203,14 @@ most of the programs functionality.
 - **`views`**: this folder contains all of the views in this application.
 
 The `bin` folder contains binstubs. Not going over this in the scope of this
-class, but basically they're used as wrappers to around ruby gem executables - like
+class, but basically they're used as wrappers around ruby gem executables - like
 `pry` - to be used in lieu of `bundle exec`. Their purpose is to prepare the environment for the executable.
 
 The `config` is another folder that's pretty important. The file you'll most be
 visiting is `routes.rb` This is the router in rMVC.
 
 The `db` folder is one you'll be working in for a bit of time as well. This
-contains the seed file but additionally it will also contain your migrations
+contains the schema and seed files. Additionally, it will also contain your migrations,
 which you'll be going over in the next class.
 
 In the root directory of the application you will also see a `Gemfile` and, if you've run `bundle install`, `Gemfile.lock`
@@ -223,17 +224,14 @@ The following are commands that we always run when creating and updating a Rails
 | Command | What does it do? |
 |---------|------------------|
 | `bundle install` | |
-| `bundle exec rake db:drop` | |
-| `bundle exec rake db:create` | |
-| `bundle exec rake db:migrate` | |
-| `bundle exec rake db:seed` | |
-| `bundle exec rails s` | |
+| `rails db:drop` | |
+| `rails db:create` | |
+| `rails db:migrate` | |
+| `rails db:seed` | |
+| `rails s` | |
 
-> If you need some help, try running `rake -T` in the terminal...
+> The `rails` command took the place of `rake` in Rails 5.0.0. However, you will still see examples that use `rake`.
 
-#### Bonus
-
-Figure out what exactly "Rake" is. [Its GitHub repo is a good place to start](https://github.com/ruby/rake).
 
 <details>
   <summary><strong>Answers...</strong></summary>
@@ -342,7 +340,7 @@ Do that for each of the following.
   >
   > 3. These define the relationships between models. In the case of Tunr, we have a simple one-many relationship: one artist has many songs
   >
-  > 4. These model name must be capitalized.
+  > 4. These model names must be capitalized.
 
 </details>
 
