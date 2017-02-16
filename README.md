@@ -237,9 +237,10 @@ The following are commands that we always run when creating and updating a Rails
   <summary><strong>Answers...</strong></summary>
 
   * `bundle install` - Loads and sets up the local dependencies
-  * `rake db:create` - Creates the database, equivalent to `createdb db_name`
-  * `rake db:migrate` - Sets up schema, equivalent to `psql -d db_name < schema_file.sql`. Creates the tables in the database
-  * `rake db:seed` - Runs seed file. Populates the tables.
+  * `rails db:drop` - Drops the database, if it exists
+  * `rails db:create` - Creates the database, equivalent to `createdb db_name`
+  * `rails db:migrate` - Sets up schema, equivalent to `psql -d db_name < schema_file.sql`. Creates the tables in the database
+  * `rails db:seed` - Runs seed file. Populates the tables.
   * `rails s` - Starts the server
 
 </details>
