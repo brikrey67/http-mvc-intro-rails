@@ -36,8 +36,8 @@ View, Controller**.
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
 Now MVC is not specific to Rails. In fact, we've seen it before via Sinatra:
-- Sinatra has provided us a way to create *controllers* to handle http requests. 
-- ActiveRecord has shown us a library to allow us to build *models*. 
+- Sinatra has provided us a way to create *controllers* to handle http requests.
+- ActiveRecord has shown us a library to allow us to build *models*.
 - We've already used Embedded Ruby (erb) to construct *views*.
 
 MVC can be used in lots of types of applications. There are MVC-style
@@ -52,7 +52,7 @@ related but different patterns in Javascript frameworks like Angular or Backbone
 
 This lesson will not include writing much - if any - code at all. We are going to
 take a high-level conceptual approach. It's extremely important to understand
-the underlying concepts before jumping into such a heavy duty framework such as
+the underlying concepts before jumping into a heavy duty framework such as
 Rails.
 
 ## What Is MVC?
@@ -63,7 +63,7 @@ MVC is all about separating your code into separate sections...
 * **Views**: describe how to present your data in a way that the user can see in the browser
 * **Controllers**: are responsible for responding to user requests, interacting with models and loading views
 
-## Rails and MVC (10 minutes / 0:20)
+## Rails and MVC (20 minutes / 0:30)
 
 Because Rails is for web apps, there's one additional component it adds to MVC:
 a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
@@ -91,7 +91,7 @@ As a result, the request-response cycle looks like this for Rails...
 
   6. The rendered view is then sent back to the client as a response.
 
-## [We Do: In-Person MVC (20 minutes / 0:40)](exercise.md)
+<!-- ## [We Do: In-Person MVC (20 minutes / 0:40)](exercise.md) -->
 
 ## Rails Apps
 
@@ -115,13 +115,13 @@ process.
 > It is designed to make programming web applications easier by making
 assumptions about what every developer needs to get started. It makes the
 assumption that there is a "best" way to do things, and it's designed to
-encourage that way - and in some cases to discourage alternatives. -- Ruby on
-Rails guide
+encourage that way - and in some cases to discourage alternatives. -- [Ruby on
+Rails guide](http://guides.rubyonrails.org/)
 
 Rails is a framework with lots of rules/conventions. Pay attention to the
 conventions you'll need to follow for Rails throughout the week.
 
-### Rails Walkthrough (5 minutes / 0:45)
+### Rails Walkthrough (5 minutes / 0:35)
 
 Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring all of the concepts we discussed
@@ -215,7 +215,9 @@ which you'll be going over in the next class.
 
 In the root directory of the application you will also see a `Gemfile` and, if you've run `bundle install`, `Gemfile.lock`
 
-### You Do: Setup Commands (10 minutes / 1:00)
+### Break (10 minutes / 1:05)
+
+### You Do: Setup Commands (10 minutes / 1:15)
 
 > 5 minutes exercise. 5 minutes review.
 
@@ -268,8 +270,6 @@ Let's focus on this particular line...
 `http://localhost:3000` is where we can begin interacting with our Rails application in the browser.
 
 > `3000` is the default port number in a Rails Application, just like `4567` with Sinatra.
-
-## Break (10 minutes / 1:15)
 
 ### You Do: Follow A Request (20 minutes / 1:35)
 
@@ -352,9 +352,51 @@ One of Rails' best features are its errors. Why?
 Rails provides detailed, understandable errors that provide guidance when building an application. We won't go too deep into them during
 this class, but you will get plenty of exposure during the upcoming lessons.
 
-To demonstrate, let's visit `http://localhost:3000/mispelledartists` in the browser. We should see...
+To demonstrate, let's visit `http://localhost:3000/hello/andy` in the browser. We should see...
 
-![no route error](images/no_route.png)
+![no route error](images/rails_routing_error.png)
+
+To fix this, let's create a route for this request in `config/routes.rb`. We will point this route to a `greetings` controller:
+```rb
+get "hello/:name" => "greetings#hello"
+```
+
+Now when we refresh the page, we should see a new error:
+
+![no action error](images/rails_no_controller_error.png)
+
+This mean that rails cannot find the controller that the route is pointing to. To fix this, lets create a new file in `app/controllers` with the filename `greetings_controller.rb`. Inside of that file, lets create a *class* that defines the controller:
+```rb
+class GreetingsController < ApplicationController
+
+end
+```
+
+When we refresh, we get a new error! This tells us that rails can find the relevant controller, but no method on the controller that matches the action in our `config/routes.rb` (`greetings#hello`).
+
+![no controller error](images/rails_no_action_error.png)
+
+Let's add a method to our controller and define any relevant data in it.
+
+```rb
+class GreetingsController < ApplicationController
+  def hello
+    @name = params[:name]
+  end
+end
+```
+
+When we refresh the page, we have one last error to address:
+
+![no view error](images/rails_no_view_error.png)
+
+To fix, we need to add a folder inside of the `views` folder that matches the controller name: `views/greetings`. Then create a file in this new folder that matches the method name `hello`:
+`views/greetings/hello.html.erb`. Once it is created, we can use embedded ruby (erb) to template a view using any instance variables we defined in the controller:
+
+```html
+<h2>Hello <%= @name %></h2>
+```
+Now when we refresh the page, we should see the correct page and name displayed. 
 
 ## Closing (5 minutes / 1:50)
 
