@@ -18,7 +18,7 @@ As our applications get more complicated, we need ways to help manage the
 *complexity* and *size*. We have lots of tools to help us do this.
 
 <details>
-<summary><strong>What are some some of these tools?</strong></summary>
+<summary><strong>What are some of these tools?</strong></summary>
 
   > Breaking code into separate files. Each file has code related to one "job."
   >
@@ -36,7 +36,7 @@ View, Controller**.
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
 Now MVC is not specific to Rails. In fact, we've seen it before via Sinatra:
-- Sinatra has provided us a way to create *controllers* to handle http requests.
+- Sinatra has provided us a way to create *controllers* to handle HTTP requests.
 - ActiveRecord has shown us a library to allow us to build *models*.
 - We've already used Embedded Ruby (erb) to construct *views*.
 
@@ -69,13 +69,13 @@ Because Rails is for web apps, there's one additional component it adds to MVC:
 a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
 views and controllers.
 
-![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
+[rMVC Diagram](http://i.stack.imgur.com/Sf2OQ.png)
 
 As a result, the request-response cycle looks like this for Rails...
 
   1. A user of our web application submits a request to our application's server.
   It can come in a myriad of ways. It could be someone typing in a URL and hitting
-  enter, clicking a link, or submitting a form on our application.
+  enter, clicking a link or submitting a form on our application.
 
   2. The request hits the router of the application.
 
@@ -277,8 +277,6 @@ Let's focus on this particular line...
 
 Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and HTTP server.Since the web is a service, it works through a combination of clients which make requests and servers (which receive requests).
 
-I'll demonstrate...
-
 Do that for each of the following.
 
 - `GET` artist info
@@ -290,7 +288,7 @@ Do that for each of the following.
 
 #### Routes
 
-1. Where do we configure our routes in a Rails Application?
+- Where do we configure our routes in a Rails Application?
 - What is the syntax for writing routes in a Rails App?
 - Why are we including a symbol again in `artists/:id` in our path?
 - What are `artists#index` and `artists#show` referring to?
@@ -310,8 +308,8 @@ Do that for each of the following.
 
 #### Views
 
-1. What is this `index.html.erb` file type?
-- Does it matter what we name our views folders. Does it matter if it's plural or singular?
+- What is this `index.html.erb` file type?
+- Does it matter what we name our views folders? Does it matter if it's plural or singular?
 - What is the layouts directory used for?
 
 <details>
@@ -327,7 +325,7 @@ Do that for each of the following.
 
 #### Models
 
-1. Where does the model get used?
+- Where does the model get used?
 - Where have we seen models like this before?
 - What does `has_many` and `belongs_to` mean?
 - What conventions do we see here?
@@ -396,7 +394,7 @@ To fix, we need to add a folder inside of the `views` folder that matches the co
 ```html
 <h2>Hello <%= @name %></h2>
 ```
-Now when we refresh the page, we should see the correct page and name displayed. 
+Now when we refresh the page, we should see the correct page and name displayed.
 
 ## Closing (5 minutes / 1:50)
 
