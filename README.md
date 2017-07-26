@@ -131,6 +131,7 @@ Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr
 
 ```bash
 $ git clone https://github.com/ga-wdi-exercises/tunr_rails_views_controllers.git
+$ cd tunr_rails_views_controllers
 $ git checkout solution
 ```
 
