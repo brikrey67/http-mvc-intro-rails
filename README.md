@@ -127,10 +127,10 @@ Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring all of the concepts we discussed
 above.
 
-Today, we'll be taking a look at [Tunr](https://github.com/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)...
+Today, we'll be taking a look at [Tunr](https://git.generalassemb.ly/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)...
 
 ```bash
-$ git clone https://github.com/ga-wdi-exercises/tunr_rails_views_controllers.git
+$ git clone git.generalassemb.ly/ga-wdi-exercises/tunr_rails_views_controllers.git
 $ cd tunr_rails_views_controllers
 $ git checkout solution
 ```
