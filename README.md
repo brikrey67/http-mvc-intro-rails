@@ -130,7 +130,7 @@ above.
 Today, we'll be taking a look at [Tunr](https://git.generalassemb.ly/ga-wdi-exercises/tunr_rails_views_controllers/tree/solution)...
 
 ```bash
-$ git clone git.generalassemb.ly/ga-wdi-exercises/tunr_rails_views_controllers.git
+$ git clone https://git.generalassemb.ly/ga-wdi-exercises/tunr_rails_views_controllers
 $ cd tunr_rails_views_controllers
 $ git checkout solution
 ```
@@ -351,7 +351,7 @@ One of Rails' best features are its errors. Why?
 Rails provides detailed, understandable errors that provide guidance when building an application. We won't go too deep into them during
 this class, but you will get plenty of exposure during the upcoming lessons.
 
-To demonstrate, let's visit `http://localhost:3000/hello/andy` in the browser. We should see...
+To demonstrate, let's visit `http://localhost:3000/hello/ali` in the browser. We should see...
 
 ![no route error](images/rails_routing_error.png)
 
