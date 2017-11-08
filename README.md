@@ -203,7 +203,7 @@ most of the programs functionality.
 - **`models`**: this folder will contain our models.
 - **`views`**: this folder contains all of the views in this application.
 
-The `bin` folder contains binstubs. Not going over this in the scope of this
+The `bin` folder contains binstubs. We're not going over this in the scope of this
 class, but basically they're used as wrappers around ruby gem executables - like
 `pry` - to be used in lieu of `bundle exec`. Their purpose is to prepare the environment for the executable.
 
