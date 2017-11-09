@@ -10,7 +10,7 @@
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Describe how to read, understand, and fix errors in a Rails application
 
-## Framing (10 minutes / 0:10)
+## Framing (10 minutes / 10:10)
 
 > NOTE: This lesson is our first foray into Rails. Its purpose is to give you a brief introduction into the back-end framework and give you a sense of what it's all about. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get into the nitty-gritty of Rails in subsequent lessons.
 
@@ -63,7 +63,7 @@ MVC is all about separating your code into separate sections...
 * **Views**: describe how to present your data in a way that the user can see in the browser
 * **Controllers**: are responsible for responding to user requests, interacting with models and loading views
 
-## Rails and MVC (20 minutes / 0:30)
+## Rails and MVC (20 minutes / 10:30)
 
 Because Rails is for web apps, there's one additional component it adds to MVC:
 a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
@@ -121,7 +121,7 @@ Rails guide](http://guides.rubyonrails.org/)
 Rails is a framework with lots of rules/conventions. Pay attention to the
 conventions you'll need to follow for Rails throughout the week.
 
-### Rails Walkthrough (5 minutes / 0:35)
+### Rails Walkthrough (5 minutes / 10:35)
 
 Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring all of the concepts we discussed
@@ -142,7 +142,7 @@ into individual files and directories. Why?
 - Readability
 - Rails Conventions
 
-## You Do: Scavenger Hunt (15 minutes / 0:50)
+## You Do: Scavenger Hunt (15 minutes / 10:50)
 
 > 10 minute exercise. 5 minutes review.
 
@@ -175,7 +175,9 @@ Your job is to look through the application and find the Rails equivalents for t
 
 </details>
 
-### What Does a Rails App Look Like? (5 minutes / 0:55)
+### Break (10 minutes / 11:00)
+
+### What Does a Rails App Look Like? (5 minutes / 11:05)
 
 As soon as we generate a Rails app, you can see there are already many folders
 and files generated from just the one command (`rails new`)
@@ -203,7 +205,7 @@ most of the programs functionality.
 - **`models`**: this folder will contain our models.
 - **`views`**: this folder contains all of the views in this application.
 
-The `bin` folder contains binstubs. Not going over this in the scope of this
+The `bin` folder contains binstubs. We're not going over this in the scope of this
 class, but basically they're used as wrappers around ruby gem executables - like
 `pry` - to be used in lieu of `bundle exec`. Their purpose is to prepare the environment for the executable.
 
@@ -216,9 +218,7 @@ which you'll be going over in the next class.
 
 In the root directory of the application you will also see a `Gemfile` and, if you've run `bundle install`, `Gemfile.lock`
 
-### Break (10 minutes / 1:05)
-
-### You Do: Setup Commands (10 minutes / 1:15)
+### You Do: Setup Commands (10 minutes / 11:15)
 
 > 5 minutes exercise. 5 minutes review.
 
@@ -272,11 +272,11 @@ Let's focus on this particular line...
 
 > `3000` is the default port number in a Rails Application, just like `4567` with Sinatra.
 
-### You Do: Follow A Request (20 minutes / 1:35)
+### You Do: Follow A Request (20 minutes / 11:35)
 
 > 10 minutes exercise. 10 minutes review.
 
-Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and HTTP server.Since the web is a service, it works through a combination of clients which make requests and servers (which receive requests).
+Using your knowledge of the MVC request-response cycle and the files/folders you discovered during the scavenger hunt exercise, try following the path of an HTTP request through a Rails application. HTTP is a protocol - a system of rules - that determines how web pages (see:'hypertext') get sent (see:'transferred') from one place to another. Among other things, it defines the format of the messages passed between HTTP clients and HTTP servers. Since the web is a service, it works through a combination of clients (which make requests) and servers (which receive requests).
 
 Do that for each of the following.
 
@@ -285,7 +285,7 @@ Do that for each of the following.
 - `POST` a new artist
 - `DELETE` an artist
 
-### Questions (10 minutes / 1:45)
+### Questions (10 minutes / 11:45)
 
 #### Routes
 
@@ -344,14 +344,16 @@ Do that for each of the following.
 
 </details>
 
-## Reading Rails Errors
+### Break (10 minutes / 11:55)
+
+## Reading Rails Errors (15 minutes / 12:10)
 
 One of Rails' best features are its errors. Why?
 
 Rails provides detailed, understandable errors that provide guidance when building an application. We won't go too deep into them during
 this class, but you will get plenty of exposure during the upcoming lessons.
 
-To demonstrate, let's visit `http://localhost:3000/hello/ali` in the browser. We should see...
+To demonstrate, let's visit `http://localhost:3000/hello/andy` in the browser. We should see...
 
 ![no route error](images/rails_routing_error.png)
 
@@ -397,10 +399,21 @@ To fix, we need to add a folder inside of the `views` folder that matches the co
 ```
 Now when we refresh the page, we should see the correct page and name displayed.
 
-## Closing (5 minutes / 1:50)
+## You Do: Reading Errors (10 minutes / 12:20)
 
-* Review learning objectives
-* A real world example: [garnet](https://github.com/ga-dc/garnet)!
+Follow the same process above to make the link `http://localhost:3000/goodbye/andy` load in your browser.  
+
+
+## Closing / Questions (Rest of Class / 12:30)
+
+- What are some ways Rails differs from Sinatra?
+- What are the components of an MVC app and what roles do they play?
+- What are some of the most commonly used folders in Rails and what do they do?
+- What does Convention over Configuration mean?
+- Where are my routes listed?
+- What is an example of Separation of Concerns in regards to Rails?
+- What CL command can I use to start my Rails server?
+- There are too many files, I feel scared! Is that normal?  (Yes!)
 
 ## Additional Resources
 - [Rails Documentation](http://api.rubyonrails.org/)
