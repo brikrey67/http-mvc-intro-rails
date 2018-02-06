@@ -10,12 +10,13 @@
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Describe how to read, understand, and fix errors in a Rails application
 
-## Framing (10 minutes / 10:10)
+## Framing (10 minutes / 0:10)
 
-> NOTE: This lesson is our first foray into Rails. Its purpose is to give you a brief introduction into the back-end framework and give you a sense of what it's all about. By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Sinatra. We'll get into the nitty-gritty of Rails in subsequent lessons.
+This lesson is our first foray into Rails, but hardly our first pass at building a fullstack web application. Concepts and links between will feel familiar, but the implementation will be different. Its purpose is to give you a brief introduction into  what developing is like with Rails, and its configuration and conventions. 
 
-As our applications get more complicated, we need ways to help manage the
-*complexity* and *size*. We have lots of tools to help us do this.
+By the end of this lesson, you are NOT expected to know the meaning behind each file and folder. All we want to focus on during this lesson is to get a feel for what Rails is all about and make comparisons between it and Express. We'll get into the nitty-gritty of Rails in subsequent lessons.
+
+As our applications get more complicated, we need ways to help manage the*complexity* and *size*. We have lots of tools, some in the form of organizational patterns, to help us do this.
 
 <details>
 <summary><strong>What are some of these tools?</strong></summary>
@@ -26,34 +27,25 @@ As our applications get more complicated, we need ways to help manage the
 
 </details>
 
-There are other tools we have as programmers. One tool is the idea of a **design
-pattern**. A design pattern is a higher-level pattern that shapes how we build
-and structure our code.
+There are other tools we have as programmers. One tool is the idea of a **design pattern**. A design pattern is a higher-level pattern that shapes how we build and structure our code.
 
-One such pattern for designing applications is MVC, which stands for **Model,
-View, Controller**.
+We've seen one such pattern for designing full-stack applications, MVC (**Model, View, Controller**).
 
 We're going to talk about MVC, because that's the pattern that Rails implements.
 
-Now MVC is not specific to Rails. In fact, we've seen it before via Sinatra:
-- Sinatra has provided us a way to create *controllers* to handle HTTP requests.
-- ActiveRecord has shown us a library to allow us to build *models*.
-- We've already used Embedded Ruby (erb) to construct *views*.
+### MVC in Express
+- Express has provided us a way to create *controllers* to handle HTTP requests.
+  > The routing handling callback function is like a controller method in Rails.
 
-MVC can be used in lots of types of applications. There are MVC-style
-frameworks for building native desktop apps (e.g., Microsoft's ASP.net, Cocoa
-for Mac), mobile apps (iOS and Android toolkits) or other web
-frameworks like Django (Python) or CakePHP.
+- We've used Handlebars (.hbs) to construct *views*.
+- We constructed models with mongoose Schemas.
 
-MVC is *not* the only design pattern for applications, but it's a popular one. We'll also see somewhat
-related but different patterns in Javascript frameworks like Angular or Backbone.
+### MVC Elsewhere
+There are MVC-style frameworks for building native desktop apps (e.g., Microsoft's ASP.net, Cocoa for Mac), mobile apps (iOS and Android toolkits) or other web frameworks like Django (which uses a variant of MVC called MVT) or CakePHP.
 
-> Some others include [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (Model-View-ViewModel) and [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (Model-View-Presenter).
+MVC is *not* the only design pattern for applications, but it's a popular one. We'll also see somewhat related but different patterns in Javascript frameworks like Angular or Backbone.
 
-This lesson will not include writing much - if any - code at all. We are going to
-take a high-level conceptual approach. It's extremely important to understand
-the underlying concepts before jumping into a heavy duty framework such as
-Rails.
+> Some others include [MVVM] (https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (Model-View-ViewModel) (Vue, AngularJS, Knockout.js) and [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (Model-View-Presenter).
 
 ## What Is MVC?
 
@@ -63,11 +55,9 @@ MVC is all about separating your code into separate sections...
 * **Views**: describe how to present your data in a way that the user can see in the browser
 * **Controllers**: are responsible for responding to user requests, interacting with models and loading views
 
-## Rails and MVC (20 minutes / 10:30)
+## Rails and MVC (20 minutes / 0:30)
 
-Because Rails is for web apps, there's one additional component it adds to MVC:
-a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models,
-views and controllers.
+Because Rails is for web apps, there's one additional component it adds to MVC: a router. A router connects incoming requests on the server to the application's controller. Thus we sometimes say that Rails is built around **rMVC** - a router, models, views and controllers.
 
 [rMVC Diagram](http://i.stack.imgur.com/Sf2OQ.png)
 
@@ -97,31 +87,22 @@ As a result, the request-response cycle looks like this for Rails...
 
 ### Convention Over Configuration in Rails
 
-We've used the phrase "convention over configuration" when describing how to write things in Sinatra.
+The phrase "convention over configuration" often pops up in the context of frameworks. Frameworks have some default configuration that spares us from making a lot of decisions about the set-up and structure of our applications. The framework's convention is preferable to manually configuring things, and this probably a core reason for using a framework in the first place (get things done more quickly, but in a predictable way shaped by the conventions of the framework).
 
-<details>
-  <summary><strong>What are some examples of "convention over configuration"?</strong></summary>
+With our example and assignment Express applications, we often implicitly followed a set of conventions...
+  - Pluralized collection (or table, if in SQL) names (e.g., `artists`)
+  - Singular, capitalized model names (e.g., `Artist`)
+  - Singular, lowercase model file names (e.g., `artist.js`)
 
-  * Pluralized table names (e.g., `artists`)
-  * Singular, capitalized model names (e.g., `Artist`)
-  * Singular, lowercase model file names (e.g., `artist.rb`)
 
-</details>
+Rails follows the conventions above in relatively strict fashion. Rails projects will usually have very similar if not the same overall file structure. This structure makes the debugging process easier and eases the confusion of jumping headfirst into a Rails project created by other developers.
 
-How does this apply to Rails? Well, Rails is a powerful, full-featured web framework that follows
-relatively strict conventions in order to streamline our web development
-process.
-
-> It is designed to make programming web applications easier by making
-assumptions about what every developer needs to get started. It makes the
-assumption that there is a "best" way to do things, and it's designed to
-encourage that way - and in some cases to discourage alternatives. -- [Ruby on
-Rails guide](http://guides.rubyonrails.org/)
+> Rails, and other application frameworks, is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is a "best" way to do things, and it's designed to encourage that way - and in some cases to discourage alternatives. -- [Ruby on Rails guide](http://guides.rubyonrails.org/)
 
 Rails is a framework with lots of rules/conventions. Pay attention to the
-conventions you'll need to follow for Rails throughout the week.
+conventions you'll need to follow for Rails throughout the coming classes.
 
-### Rails Walkthrough (5 minutes / 10:35)
+### Rails Walkthrough (5 minutes / 0:35)
 
 Let's walk through a Rails App to get comfortable with its file structure and
 identify where we will be configuring all of the concepts we discussed
@@ -142,7 +123,7 @@ into individual files and directories. Why?
 - Readability
 - Rails Conventions
 
-## You Do: Scavenger Hunt (15 minutes / 10:50)
+## You Do: Scavenger Hunt (15 minutes / 0:50)
 
 > 10 minute exercise. 5 minutes review.
 
@@ -155,11 +136,11 @@ Your job is to look through the application and find the Rails equivalents for t
 * An `Artist` model
 * Code that should be run when we visit the index page for artists
 * The view that should be displayed when we visit the index page for artists
-* `layout.erb`
+* The `layout.erb` file
 * Directories for CSS and Javascript files
-* `connection.rb`
+* A file named `connection.rb`
 
-> Make notes about anything else that reminds you of Sinatra.
+> Make note of anything that reminds you of the Express apps we've seen so far.
 
 <details>
   <summary><strong>Answers...</strong></summary>
@@ -175,54 +156,43 @@ Your job is to look through the application and find the Rails equivalents for t
 
 </details>
 
-### Break (10 minutes / 11:00)
+### Break (10 minutes / 1:00)
 
-### What Does a Rails App Look Like? (5 minutes / 11:05)
+### What Does a Rails App Look Like? (5 minutes / 1:05)
 
 As soon as we generate a Rails app, you can see there are already many folders
-and files generated from just the one command (`rails new`)
+and files generated from just the one command, `rails new`...
 
 ![Rails folder structure](images/rails_folders.png)
 
-While all these files may be daunting at first, you're already familiar with many of these components from your work with Sinatra. Additionally, you can ignore a lot of the other stuff until you need to
-incorporate some weird gem or dependency. So we started learning about *"convention
-over configuration"* during the class for Active Record.
+While all these files may be daunting at first, you're already familiar with an MVC file structure from your work with Express. For the time being, you can ignore a lot of the other configuration files until you have a need to customize your app or incorporate some specific functionality or gem.
 
-As we scale to a Rails size application, We can quickly see the need for conventions in such a massive
-framework. Specifically for folder and file structure, Rails can be quite
-particular about how we name things. Throughout this week we'll be going through
-a bunch of different conventions we need to follow.
+As we scale to a Rails size application, We can quickly see the need for conventions in such a massive framework. Specifically for folder and file structure, Rails can be quite particular about how we name things. Throughout this week we'll be going through a bunch of different conventions we need to follow.
 
 The first folder we'll talk about is the `app` folder...
 
 ![Rails app folder](images/rails_app.png)
 
-This folder is the the most important folder in your entire application. It will contain
-most of the programs functionality.
+This folder is the the most important folder in your entire application. It will contain most of the programs functionality.
 
 - **`assets`**: this will be where all of your CSS, JS, and image files belong.
 - **`controllers`**: this folder will contain all controllers.
 - **`models`**: this folder will contain our models.
 - **`views`**: this folder contains all of the views in this application.
 
-The `bin` folder contains binstubs. We're not going over this in the scope of this
-class, but basically they're used as wrappers around ruby gem executables - like
-`pry` - to be used in lieu of `bundle exec`. Their purpose is to prepare the environment for the executable.
+The `bin` folder contains binstubs. We're not going over this in the scope of this class, but basically they're used as wrappers around ruby gem executables - like `pry` - to be used in lieu of `bundle exec`. Their purpose is to prepare the environment for the executable.
 
-The `config` is another folder that's pretty important. The file you'll most be
-visiting is `routes.rb` This is the router in rMVC.
+The `config` is another folder that's pretty important. The file you'll most be visiting is `routes.rb` This is the router in rMVC.
 
-The `db` folder is one you'll be working in for a bit of time as well. This
-contains the schema and seed files. Additionally, it will also contain your migrations,
-which you'll be going over in the next class.
+The `db` folder is one you'll be working in for a bit of time as well. This contains the schema and seed files. Additionally, it will also contain your migrations, which you'll be going over in the next class.
 
 In the root directory of the application you will also see a `Gemfile` and, if you've run `bundle install`, `Gemfile.lock`
 
-### You Do: Setup Commands (10 minutes / 11:15)
+### You Do: Setup Commands (10 minutes / 1:15)
 
 > 5 minutes exercise. 5 minutes review.
 
-The following are commands that we always run when creating and updating a Rails application. Your task is to run these in order and, based on the context clues (e.g., terminal output), figure out what they're doing. You answers don't need to be technical - keep it high level.
+The following are commands that are often run when setting up a Rails application. Your task is to run these in order and, based on the context clues (e.g., terminal output), figure out what they're doing. You answers don't need to be technical - keep it high-level or general.
 
 | Command | What does it do? |
 |---------|------------------|
@@ -233,7 +203,7 @@ The following are commands that we always run when creating and updating a Rails
 | `rails db:seed` | |
 | `rails s` | |
 
-> The `rails` command took the place of `rake` in Rails 5.0.0. However, you will still see examples that use `rake`.
+> NOTE: The `rails` command took the place of `rake` in Rails 5.0.0. You will likely still see older examples that use `rake` in Rails-related search results.
 
 
 <details>
@@ -270,9 +240,9 @@ Let's focus on this particular line...
 
 `http://localhost:3000` is where we can begin interacting with our Rails application in the browser.
 
-> `3000` is the default port number in a Rails Application, just like `4567` with Sinatra.
+> `3000` is the default port number in a Rails Application
 
-### You Do: Follow A Request (20 minutes / 11:35)
+### You Do: Follow A Request (20 minutes / 1:35)
 
 > 10 minutes exercise. 10 minutes review.
 
@@ -285,7 +255,7 @@ Do that for each of the following.
 - `POST` a new artist
 - `DELETE` an artist
 
-### Questions (10 minutes / 11:45)
+### Questions (10 minutes / 1:45)
 
 #### Routes
 
@@ -344,9 +314,9 @@ Do that for each of the following.
 
 </details>
 
-### Break (10 minutes / 11:55)
+### Break (10 minutes / 1:55)
 
-## Reading Rails Errors (15 minutes / 12:10)
+## Reading Rails Errors (15 minutes / 2:10)
 
 One of Rails' best features are its errors. Why?
 
@@ -399,14 +369,14 @@ To fix, we need to add a folder inside of the `views` folder that matches the co
 ```
 Now when we refresh the page, we should see the correct page and name displayed.
 
-## You Do: Reading Errors (10 minutes / 12:20)
+## You Do: Reading Errors (10 minutes / 2:20)
 
 Follow the same process above to make the link `http://localhost:3000/goodbye/andy` load in your browser.  
 
 
-## Closing / Questions (Rest of Class / 12:30)
+## Closing / Questions (10 minutes / 2:30)
 
-- What are some ways Rails differs from Sinatra?
+- What are some ways Rails differs from Express?
 - What are the components of an MVC app and what roles do they play?
 - What are some of the most commonly used folders in Rails and what do they do?
 - What does Convention over Configuration mean?
